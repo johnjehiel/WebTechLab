@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+		<style>
+			body {
+				background-color: aliceblue;
+			}
+			.panel {
+				margin-top: 8%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				color: navy;
+			}
+			.question {
+				font-size: 30px;
+				margin-bottom: 20px;
+			}
+
+			.options {
+				font-size: 20px;
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				grid-gap: 20px;
+				margin-top: 10px;
+				margin-bottom: 20px;
+				top: 40%;
+				left: 40%;
+			}
+			button {
+				margin-right: 75px;
+				margin-top: 10px;
+				font-size: 20px;
+				padding: 10px 20px;
+				background-color: #4f98c2;
+				color: white;
+				border: none;
+				cursor: pointer;
+			}
+			#score {
+				font-size: 30px;
+				color: darkslategray;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="panel">
+			<h1>Quiz Application Using JavaScript</h1>
+			<div class="question" id="ques"></div>
+			<div class="options" id="opt"></div>
+			<button onclick="checkAns()" id="btn">SUBMIT</button>
+			<div id="score"></div>
+			<script>
+				const Questions = [
+					{
+						q: "What is capital of India?",
+						a: [
+							{ text: "Gandhinagar", isCorrect: false },
+							{ text: "Surat", isCorrect: false },
+							{ text: "Delhi", isCorrect: true },
+							{ text: "Mumbai", isCorrect: false },
+						],
+					},
+					{
+						q: "What is the capital of Thailand?",
+						a: [
+							{ text: "Lampang", isCorrect: false },
+							{ text: "Phuket", isCorrect: false },
+							{ text: "Ayutthaya", isCorrect: false },
+							{ text: "Bangkok", isCorrect: true },
+						],
+					},
+					{
+						q: "What is the capital of Gujarat",
+						a: [
+							{ text: "Surat", isCorrect: false },
+							{ text: "Vadodara", isCorrect: false },
+							{ text: "Gandhinagar", isCorrect: true },
+							{ text: "Rajkot", isCorrect: false },
+						],
+					},
+				];
+
+				let currQuestion = 0;
+				let score = 0;
+
+				function loadQues() {
+					const question = document.getElementById("ques");
+					const opt = document.getElementById("opt");
+
+					question.textContent = Questions[currQuestion].q;
+					opt.innerHTML = "";
+					for (let i = 0; i < Questions[currQuestion].a.length; i++) {
+						const choicesdiv = document.createElement("div");
+						const choice = document.createElement("input");
+						const choiceLabel = document.createElement("label");
+
+						choice.type = "radio";
+						choice.name = "answer";
+						choice.value = i;
+
+						choiceLabel.textContent = Questions[currQuestion].a[i].text;
+
+						choicesdiv.appendChild(choice);
+						choicesdiv.appendChild(choiceLabel);
+						opt.appendChild(choicesdiv);
+					}
+				}
+
+				loadQues();
+
+				function loadScore() {
+					const totalScore = document.getElementById("score");
+					totalScore.textContent = `You scored ${score} out of ${Questions.length}`;
+				}
+
+				function nextQuestion() {
+					if (currQuestion < Questions.length - 1 ) {
+						currQuestion++;
+						loadQues();
+					} else {
+						document.getElementById("opt").remove();
+						document.getElementById("ques").remove();
+						document.getElementById("btn").remove();
+						loadScore();
+					}
+				}
+
+				function checkAns() {
+					const selectedAns = parseInt(
+						document.querySelector('input[name="answer"]:checked').value
+					);
+
+					if (Questions[currQuestion].a[selectedAns].isCorrect) {
+						score++;
+					}
+					nextQuestion();
+				}
+			</script>
+		</div>
+	</body>
+</html>
+<!--
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+        .panel {
+            text-align: center;
+            color: navy;
+            margin-top: 10%;
+        }
+        .question {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .options {
+            font-size: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #4f98c2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #score {
+            font-size: 30px;
+            color: darkslategray;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>Quiz Application Using JavaScript</h1>
+        <div class="question" id="ques"></div>
+        <div class="options" id="opt"></div>
+        <button onclick="checkAns()" id="btn">SUBMIT</button>
+        <div id="score"></div>
+
+        <script>
+            const Questions = [
+                {
+                    q: "What is capital of India?",
+                    a: [
+                        "Gandhinagar",
+                        "Surat",
+                        "Delhi",
+                        "Mumbai"
+                    ],
+                    correct: "Delhi"
+                },
+                {
+                    q: "What is the capital of Thailand?",
+                    a: [
+                        "Lampang",
+                        "Phuket",
+                        "Ayutthaya",
+                        "Bangkok"
+                    ],
+                    correct: "Bangkok"
+                },
+                {
+                    q: "What is the capital of Gujarat?",
+                    a: [
+                        "Surat",
+                        "Vadodara",
+                        "Gandhinagar",
+                        "Rajkot"
+                    ],
+                    correct: "Gandhinagar"
+                }
+            ];
+
+            let currQuestion = 0;
+            let score = 0;
+
+            function loadQues() {
+                const question = document.getElementById("ques");
+                const opt = document.getElementById("opt");
+
+                question.textContent = Questions[currQuestion].q;
+                opt.innerHTML = "";
+                for (let i = 0; i < Questions[currQuestion].a.length; i++) {
+                    const choicesdiv = document.createElement("div");
+                    const choice = document.createElement("input");
+                    const choiceLabel = document.createElement("label");
+
+                    choice.type = "radio";
+                    choice.name = "answer";
+                    choice.value = Questions[currQuestion].a[i];
+
+                    choiceLabel.textContent = Questions[currQuestion].a[i];
+
+                    choicesdiv.appendChild(choice);
+                    choicesdiv.appendChild(choiceLabel);
+                    opt.appendChild(choicesdiv);
+                }
+            }
+
+            loadQues();
+
+            function loadScore() {
+                const totalScore = document.getElementById("score");
+                totalScore.textContent = `You scored ${score} out of ${Questions.length}`;
+            }
+
+            function nextQuestion() {
+                if (currQuestion < Questions.length - 1) {
+                    currQuestion++;
+                    loadQues();
+                } else {
+                    document.getElementById("opt").remove();
+                    document.getElementById("ques").remove();
+                    document.getElementById("btn").remove();
+                    loadScore();
+                }
+            }
+
+            function checkAns() {
+                const selectedAns = document.querySelector('input[name="answer"]:checked').value;
+
+                if (selectedAns === Questions[currQuestion].correct) {
+                    score++;
+                }
+                nextQuestion();
+            }
+        </script>
+    </div>
+</body>
+</html>
+-->

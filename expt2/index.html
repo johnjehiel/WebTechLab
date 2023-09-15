@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>webpage with css</title>
+		<style>
+			body {
+				background-image: url("pexels-henry-&-co-1939485.jpg");
+				background-color: rgb(241, 240, 255);
+			}
+			#head {
+				text-align: center;
+				background-color: rgb(121, 119, 218);
+				border: 3px groove purple;
+			}
+			.main {
+				border: 3px solid #5f5f5f;
+				margin: 5% 10%;
+				padding: 20px;
+			}
+			tr {
+				padding: 10px;
+			}
+			td {
+				padding: 10px;
+			}
+			#submitbutton {
+				border: 2px inset rgb(65, 49, 209);
+				border-radius: 30px;
+				width: 100px;
+				height: 30px;
+				background-color: rgb(121, 119, 218);
+			}
+			input,
+			select {
+				border-radius: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<header id="head">
+			<h2>Registration form</h2>
+		</header>
+		<div class="main">
+			<table>
+				<tr>
+					<td>User name:</td>
+					<td>
+						<input
+							type="text"
+							id="uname"
+							placeholder="enter user name"
+							required
+						/>
+					</td>
+				</tr>
+				<br />
+				<tr></tr>
+				<tr>
+					<td>email:</td>
+					<td>
+						<input type="email" id="email" placeholder="enter email" required />
+					</td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td>password:</td>
+					<td>
+						<input
+							type="password"
+							id="password"
+							placeholder="enter password"
+							required
+						/>
+					</td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td>phone no:</td>
+					<td>
+						<input
+							type="number"
+							id="number"
+							placeholder="enter phone no"
+							required
+						/>
+					</td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td>select domain:</td>
+					<td>
+						<select name="cars" id="domain">
+							<option value="">please select anyone</option>
+							<option value="front-end">front-end</option>
+							<option value="back-end">back-end</option>
+							<option value="machine-learning">machine-learning</option>
+							<option value="cloud">cloud</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+			<br />
+			<button type="submit" class="but" id="submitbutton">Submit</button><br />
+		</div>
+		<footer id="head"></footer>
+			<div>
+				<marquee style="color: red"
+					>NOTE: STUDENTS ARE REQUESTED TO FILL THE FORM WITH CORRECT
+					INFORMATION</marquee
+				>
+			</div>
+	</body>
+</html>

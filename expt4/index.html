@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			/* Style for the slideshow container */
+			.slideshow-container {
+				max-width: 600px;
+				position: relative;
+				margin: auto;
+			}
+
+			/* Hide all slides by default */
+			.mySlides {
+				display: none;
+			}
+      img {
+        height: 500px;
+      }
+			/* Style for the digital clock */
+			#clock {
+				font-size: 24px;
+				text-align: center;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="slideshow-container">
+			<div class="mySlides">
+				<img src="https://www.freecodecamp.org/news/content/images/2022/09/jonatan-pie-3l3RwQdHRHg-unsplash.jpg" style="width: 100%" />
+			</div>
+			<div class="mySlides">
+				<img src="https://img.freepik.com/premium-photo/aurora-borealis-majestic-mountain-snowy-segla-island-norway_49071-2896.jpg?size=626&ext=jpg" style="width: 100%" />
+			</div>
+
+			<div class="mySlides">
+				<img src="https://img.freepik.com/premium-photo/panorama-northern-lights-snowcapped-mountains-amazing-landscape-fairy-tale_86390-11129.jpg" style="width: 100%" />
+			</div>
+		</div>
+
+		<div id="clock"></div>
+
+		<script>
+			// Slideshow script
+			var slideIndex = 0;
+			showSlides();
+
+			function showSlides() {
+				var slides = document.getElementsByClassName("mySlides");
+				for (var i = 0; i < slides.length; i++) {
+					slides[i].style.display = "none";
+				}
+				slideIndex++;
+				if (slideIndex > slides.length) {
+					slideIndex = 1;
+				}
+				slides[slideIndex - 1].style.display = "block";
+				setTimeout(showSlides, 2000); // Change image every 2 seconds
+			}
+			// Digital clock script
+			function updateClock() {
+				var now = new Date();
+				var hours = now.getHours();
+				var minutes = now.getMinutes();
+				var seconds = now.getSeconds();
+				// Add leading zeros if needed
+				hours = hours < 10 ? "0" + hours : hours;
+				minutes = minutes < 10 ? "0" + minutes : minutes;
+				seconds = seconds < 10 ? "0" + seconds : seconds;
+
+				var currentTime = hours + ":" + minutes + ":" + seconds;
+				document.getElementById("clock").textContent = currentTime;
+				setTimeout(updateClock, 1000); // Update every second
+			}
+			updateClock(); // Initial call to start the clock
+		</script>
+	</body>
+</html>
