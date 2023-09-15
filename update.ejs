@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Update</title>
+		<style>
+			.container {
+				padding: 20px;
+				margin-top: 60px;
+				margin-left: 400px;
+			}
+			form {
+				margin-left: -72px;
+			}
+			input {
+				height: 40px;
+				width: 160px;
+				margin-left: 20px;
+			}
+			h1 {
+				margin-left: 205px;
+			}
+			body {
+				background-color: rgb(151, 150, 150);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Update Record</h1>
+			<form action="/updateData" method="post">
+				<input
+					type="text"
+					placeholder="Name"
+					name="id"
+					value="<%= test[0].id%>"
+					readonly
+				/>
+				<input
+					type="text"
+					placeholder="Name"
+					name="name"
+					value="<%=
+test[0].UserName%>"
+					autocomplete="off"
+				/>
+				<input
+					type="text"
+					placeholder="Email"
+					name="email"
+					value="<%=
+test[0].Email%>"
+					autocomplete="off"
+				/>
+				<input type="submit" value="Update" />
+			</form>
+		</div>
+	</body>
+</html>
+.env HOST = localhost USER = your_user_name PASSWORD = DATABASE = your_db_name

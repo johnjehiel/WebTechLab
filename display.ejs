@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			.container {
+				padding: 20px;
+				margin-top: 60px;
+				margin-left: 515px;
+			}
+			table {
+				width: 600px;
+				text-align: center;
+				margin-left: -85px;
+			}
+			table th,
+			td {
+				height: 40px;
+				width: 40px;
+				background-color: white;
+			}
+			form {
+				margin-left: -72px;
+			}
+			input {
+				height: 40px;
+				width: 160px;
+				margin-left: 20px;
+			}
+			h1 {
+				margin-left: 145px;
+			}
+			body {
+				background-color: rgb(151, 150, 150);
+			}
+		</style>
+		<title>Display</title>
+	</head>
+	<body>
+		<div class="container">
+			<h1>CRUD App</h1>
+			<form action="/" method="post">
+				<input type="text" placeholder="Name" name="name" />
+				<input type="text" placeholder="Email" name="email" />
+				<input type="submit" value="Add" />
+			</form>
+			<br /><br />
+
+			<table border="2">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Update</th>
+					<th>Delete</th>
+				</tr>
+				<% if (test.length > 0) { %> <% for (var i = 0; i < test.length; i++) {
+				%>
+				<tr>
+					<td><%= test[i].id %></td>
+					<td><%= test[i].UserName %></td>
+					<td><%= test[i].Email %></td>
+					<td><a href="/update?id=<%= test[i].id%>">Update</a></td>
+					<td><a href="/delete?id=<%= test[i].id%>">Delete</a></td>
+				</tr>
+				<% } %> <% } else { %>
+				<tr>
+					<td colspan="5"><h3>Data not found</h3></td>
+				</tr>
+				<% } %>
+			</table>
+		</div>
+	</body>
+</html>
